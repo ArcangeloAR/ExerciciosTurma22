@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class Exercicio4 {
 	
-
-
 	public static void main(String[] args) {
 		/* (Utilizando Matriz) Faça um programa que leia duas matrizes 2 x 2 com valores reais. Ofereça ao usuário um menu de opções:
 		   	1. Somar duas matrizes;
@@ -19,9 +17,9 @@ public class Exercicio4 {
 
 		System.out.println("Abaixo você poderá escrever os valores de duas matrizes, em seguida, terá uma gama de opções para efetuar operações com elas: \n");
 		
-		int[][] matriz1 = new int[2][2];
-		int[][] matriz2 = new int[2][2];
-		int[][] matriz3 = new int[2][2];
+		float[][] matriz1 = new float[2][2];
+		float[][] matriz2 = new float[2][2];
+		float[][] matriz3 = new float[2][2];
 		
 		int i,j, opcao;
 		
@@ -31,7 +29,7 @@ public class Exercicio4 {
 		for(i=0;i<2;i++) {
 			for(j=0;j<2;j++) {
 				System.out.println("Digite o valor da "+(i+1)+"ª linha e "+(j+1)+"ª coluna: ");
-				matriz1[i][j] = read.nextInt();
+				matriz1[i][j] = read.nextFloat();
 			}
 		}
 		
@@ -39,7 +37,7 @@ public class Exercicio4 {
 		for(i=0;i<2;i++) {
 			for(j=0;j<2;j++) {
 				System.out.println("Digite o valor da "+(i+1)+"ª linha e "+(j+1)+"ª coluna: ");
-				matriz2[i][j] = read.nextInt();
+				matriz2[i][j] = read.nextFloat();
 			}
 		}		
 		
@@ -61,7 +59,7 @@ public class Exercicio4 {
 			
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz3[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz3[i][j]);
 				}
 				System.out.println();
 			}
@@ -76,7 +74,7 @@ public class Exercicio4 {
 			
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz3[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz3[i][j]);
 				}
 				System.out.println();
 			}
@@ -94,7 +92,7 @@ public class Exercicio4 {
 			
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz1[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz1[i][j]);
 				}
 				System.out.println();
 			}
@@ -108,7 +106,7 @@ public class Exercicio4 {
 			
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz2[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz2[i][j]);
 				}
 				System.out.println();
 			}
@@ -120,7 +118,7 @@ public class Exercicio4 {
 			System.out.println("\nA primeira matriz foi preenchida com os seguintes valores: ");
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz1[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz1[i][j]);
 				}
 				System.out.println();
 			}		
@@ -128,7 +126,7 @@ public class Exercicio4 {
 			System.out.println("\nA segunda matriz foi preenchida com os seguintes valores: ");
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz2[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz2[i][j]);
 				}
 				System.out.println();
 			}	
