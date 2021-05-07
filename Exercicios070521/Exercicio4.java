@@ -7,21 +7,21 @@ public class Exercicio4 {
 
 
 	public static void main(String[] args) {
-		/* (Utilizando Matriz) Faça um programa que leia duas matrizes 2 x 2 com valores reais. Ofereça ao usuário um menu de opções:
+		/* (Utilizando Matriz) FaÃ§a um programa que leia duas matrizes 2 x 2 com valores reais. OfereÃ§a ao usuÃ¡rio um menu de opÃ§Ãµes:
 		   	1. Somar duas matrizes;
 		   	2. Subtrair a primeira matriz da segunda;
 		   	3. Adicionar uma constante as duas matrizes;
 		   	4. Imprimir as matrizes.
 		   	
-		   	Nas duas primeiras opções uma terceira matriz 2 x 2 deve ser criada. Na terceira opção o valor da constante deve ser lido e o resultado da adição da constante deve ser armazenado na própria matriz.
+		   	Nas duas primeiras opÃ§Ãµes uma terceira matriz 2 x 2 deve ser criada. Na terceira opÃ§Ã£o o valor da constante deve ser lido e o resultado da adiÃ§Ã£o da constante deve ser armazenado na prÃ³pria matriz.
 		   	
 		 */
 
-		System.out.println("Abaixo você poderá escrever os valores de duas matrizes, em seguida, terá uma gama de opções para efetuar operações com elas: \n");
+		System.out.println("Abaixo vocÃª poderÃ¡ escrever os valores de duas matrizes, em seguida, terÃ¡ uma gama de opÃ§Ãµes para efetuar operaÃ§Ãµes com elas: \n");
 		
-		int[][] matriz1 = new int[2][2];
-		int[][] matriz2 = new int[2][2];
-		int[][] matriz3 = new int[2][2];
+		float[][] matriz1 = new float[2][2];
+		float[][] matriz2 = new float[2][2];
+		float[][] matriz3 = new float[2][2];
 		
 		int i,j, opcao;
 		
@@ -30,24 +30,24 @@ public class Exercicio4 {
 		System.out.println("Por favor, digite abaixo os valores da primeira matriz: ");
 		for(i=0;i<2;i++) {
 			for(j=0;j<2;j++) {
-				System.out.println("Digite o valor da "+(i+1)+"ª linha e "+(j+1)+"ª coluna: ");
-				matriz1[i][j] = read.nextInt();
+				System.out.println("Digite o valor da "+(i+1)+"Âª linha e "+(j+1)+"Âª coluna: ");
+				matriz1[i][j] = read.nextFloat();
 			}
 		}
 		
 		System.out.println("\nPor favor, digite abaixo os valores da segunda matriz: ");
 		for(i=0;i<2;i++) {
 			for(j=0;j<2;j++) {
-				System.out.println("Digite o valor da "+(i+1)+"ª linha e "+(j+1)+"ª coluna: ");
-				matriz2[i][j] = read.nextInt();
+				System.out.println("Digite o valor da "+(i+1)+"Âª linha e "+(j+1)+"Âª coluna: ");
+				matriz2[i][j] = read.nextFloat();
 			}
 		}		
 		
-		System.out.println("\nPor favor, digite abaixo a operação que você deseja efetuar com as matrizes digitadas: \n1. Somar duas matrizes;\n2. Subtrair a primeira matriz da segunda;\n3. Adicionar uma constante as duas matrizes;\n4. Imprimir as matrizes.");
+		System.out.println("\nPor favor, digite abaixo a operaÃ§Ã£o que vocÃª deseja efetuar com as matrizes digitadas: \n1. Somar duas matrizes;\n2. Subtrair a primeira matriz da segunda;\n3. Adicionar uma constante as duas matrizes;\n4. Imprimir as matrizes.");
 		opcao = read.nextInt();
 		
 		while(opcao<1 || opcao>4) {
-			System.out.println("\nPor favor, digite uma das opções apresentadas: \n1. Somar duas matrizes;\n2. Subtrair a primeira matriz da segunda;\n3. Adicionar uma constante as duas matrizes;\n4. Imprimir as matrizes.");
+			System.out.println("\nPor favor, digite uma das opÃ§Ãµes apresentadas: \n1. Somar duas matrizes;\n2. Subtrair a primeira matriz da segunda;\n3. Adicionar uma constante as duas matrizes;\n4. Imprimir as matrizes.");
 			opcao = read.nextInt();
 			}
 		
@@ -61,7 +61,7 @@ public class Exercicio4 {
 			
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz3[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz3[i][j]);
 				}
 				System.out.println();
 			}
@@ -76,7 +76,7 @@ public class Exercicio4 {
 			
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz3[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz3[i][j]);
 				}
 				System.out.println();
 			}
@@ -85,7 +85,7 @@ public class Exercicio4 {
 		case 3:
 			
 			final int a = 5;
-					System.out.println("\nA constante a (que vale 5) foi adicionada a cada posição da primeira matriz, sendo assim, agora ela está preenchida com os seguintes valores: ");
+					System.out.println("\nA constante a (que vale 5) foi adicionada a cada posiÃ§Ã£o da primeira matriz, sendo assim, agora ela estÃ¡ preenchida com os seguintes valores: ");
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
 					matriz1[i][j] = matriz1[i][j] + a;
@@ -94,12 +94,12 @@ public class Exercicio4 {
 			
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz1[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz1[i][j]);
 				}
 				System.out.println();
 			}
 			
-			System.out.println("\nA constante a foi adicionada a cada posição da segunda matriz, sendo assim, agora ela está preenchida com os seguintes valores: ");
+			System.out.println("\nA constante a foi adicionada a cada posiÃ§Ã£o da segunda matriz, sendo assim, agora ela estÃ¡ preenchida com os seguintes valores: ");
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
 					matriz2[i][j] = matriz2[i][j] + a;
@@ -108,7 +108,7 @@ public class Exercicio4 {
 			
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz2[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz2[i][j]);
 				}
 				System.out.println();
 			}
@@ -120,7 +120,7 @@ public class Exercicio4 {
 			System.out.println("\nA primeira matriz foi preenchida com os seguintes valores: ");
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz1[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz1[i][j]);
 				}
 				System.out.println();
 			}		
@@ -128,14 +128,14 @@ public class Exercicio4 {
 			System.out.println("\nA segunda matriz foi preenchida com os seguintes valores: ");
 			for(i=0;i<2;i++) {
 				for(j=0;j<2;j++) {
-					System.out.printf("\t %d \t |",matriz2[i][j]);
+					System.out.printf("\t %2.2f \t |",matriz2[i][j]);
 				}
 				System.out.println();
 			}	
 		break;
 		
 		default:
-			System.out.println("\nPor favor, digite uma das opções válida");
+			System.out.println("\nPor favor, digite uma das opÃ§Ãµes vÃ¡lida");
 	
 		}
 	}
