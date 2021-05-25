@@ -10,7 +10,7 @@ CREATE TABLE tb_categoria(
 );
 
 CREATE TABLE tb_produto(
-	id_produto BIGINT AUTO_INCREMENT,
+    id_produto BIGINT AUTO_INCREMENT,
     nome_produto VARCHAR(255) NOT NULL,
     preco_produto DECIMAL(10, 2) NOT NULL,
     cor_produto VARCHAR(255) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE tb_produto(
     FOREIGN KEY(fk_tb_categoria) REFERENCES tb_categoria(id_categoria)
 );
 
-INSERT INTO tb_categoria(nome_categoria, familia_categoria) VALUES
+INSERT INTO tb_categoria(nome_categoria, tipo_categoria) VALUES
 ("Porcelanato", "Piso"),
 ("Azulejo", "Revestimento"),
 ("Pastilha", "Revestimento"),
