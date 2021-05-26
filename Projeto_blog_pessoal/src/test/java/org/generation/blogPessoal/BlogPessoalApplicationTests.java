@@ -1,10 +1,10 @@
-package com.helloworld.hello;
+package org.generation.blogPessoal;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HelloApplicationTests {
+class BlogPessoalApplicationTests {
 
 	@Test
 	void contextLoads() {
