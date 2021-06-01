@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +31,7 @@ public class Categorias {
 	@Size(min=5, max=50, message = "Entre 5 e 50 caracteres.")
 	private String jogabilidade;
 	
-	@OneToMany(mappedBy = "gerador", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "gerador", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"gerador"})
 	private List<Produtos> produtosDaCategoria = new ArrayList<>();
 	

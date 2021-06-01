@@ -1,6 +1,5 @@
 package com.gameshop.gameshop.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,7 +29,7 @@ public class Produtos {
 	@Size(min = 2, max = 70, message = "Entre 2 e 70 caracteres.")
 	private String nomeDesenvolvedora;
 	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_categoria")
 	@JsonIgnoreProperties({"produtosDaCategoria"})
 	private Categorias gerador;
