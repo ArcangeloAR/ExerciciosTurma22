@@ -3,7 +3,7 @@ package org.generation.blogPessoal.controller;
 import java.util.List;
 
 import org.generation.blogPessoal.model.Tema;
-import org.generation.blogPessoal.model.repository.TemaRepository;
+import org.generation.blogPessoal.service.TemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,38 +22,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tema")
 public class TemaController {
 	
-	@Autowired
-	private TemaRepository repository;
+	
+	private @Autowired TemaService temaService;
 	
 	@GetMapping
 	public ResponseEntity<List<Tema>> getAll(){
-		return ResponseEntity.ok(repository.findAll());
+		return temaService.findAll();
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Tema> getById(@PathVariable long id){
-		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
-				.orElse(ResponseEntity.notFound().build());
+	@GetMapping("/id/{id}")
+	public ResponseEntity<Tema> GetById(@PathVariable long idTema){
+		return temaService.procurarTemaPorId(idTema);
 	}
 	
-	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Tema>> getByName(@PathVariable String nome){
-		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(nome));
+	@GetMapping("/titulo")
+	public ResponseEntity<List<Tema>> getByDescricaoTema(@RequestParam String descricaoTema) {
+		return temaService.procurarTemaPorDescricao(descricaoTema);
 	}
 	
-	@PostMapping
-	public ResponseEntity<Tema> post (@RequestBody Tema tema){
-		return ResponseEntity.status(201).body(repository.save(tema));
+	@PostMapping("/{id_usuario}")
+	public ResponseEntity<Tema> elaborarTema(@PathVariable(value = "id_usuario") Long idUsuario, @RequestBody Tema novoTema) {
+		return temaService.criarTema(idUsuario, novoTema);
 	}
 	
-	@PutMapping
-	public ResponseEntity<Tema> put (@RequestBody Tema tema){
-		return ResponseEntity.ok(repository.save(tema));
+	@PutMapping("/{id_usuario}/modificar/tema")
+	public ResponseEntity<Tema> alterarTema(@PathVariable(value = "id_usuario") Long idUsuario, @RequestBody Tema novoTema){
+		return temaService.modificarTema(idUsuario, novoTema);
 	}
 	
-	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
-		repository.deleteById(id);
+	@DeleteMapping("/{id_tema}")
+	public ResponseEntity<String> deletar(@PathVariable(value = "id_tema") Long idTema) {
+		return temaService.deletarTema(idTema);
 	}
 	
 }

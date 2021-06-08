@@ -19,29 +19,29 @@ public class Tema {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long idTema;
 	
 	@NotNull
-	private String descricao;
+	private String descricaoTema;
 	
 	@OneToMany(mappedBy = "tema", cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("tema")
 	private List<Postagem> postagem;
 
-	public long getId() {
-		return id;
+	public long getIdTema() {
+		return idTema;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setIdTema(long idTema) {
+		this.idTema = idTema;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescricaoTema() {
+		return descricaoTema;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescricaoTema(String descricaoTema) {
+		this.descricaoTema = descricaoTema;
 	}
 
 	public List<Postagem> getPostagem() {
@@ -51,6 +51,5 @@ public class Tema {
 	public void setPostagem(List<Postagem> postagem) {
 		this.postagem = postagem;
 	}
-	
-	
+		
 }
