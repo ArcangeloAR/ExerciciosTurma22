@@ -1,0 +1,81 @@
+/* Estilos globais */
+
+* {
+    color: black;
+}
+
+body {
+    background-image: url(../img/fundo.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.center{
+    text-align: center;
+}
+
+.borederraidius-50{
+    border-radius: 50%;
+}
+
+.justify{
+    text-align: justify;
+}
+#menu{
+    display: flex;
+    background-color: black;
+    height: 50px;
+    align-items: center;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#menu li{
+    display: inline;
+    padding: 15px;
+    font-size: 20px;
+
+}
+
+#menu li a{
+    text-decoration: none;
+    color:white;
+
+}
+
+#menu li a:hover{
+    color:orangered;
+}
+
+.container{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tamanho-logos{
+    width: 40px;
+    height: 40px;
+}
+
+
+
+/* Estilos da página index.html */
+.padding-10 {
+    padding: 10px;
+}
+
+.size-20{
+    font-size: 20px;
+}
+
+
+
+/* Estilos da página contato.html */
+.margin-left-50{
+    margin-left: 50px;
+}
+
