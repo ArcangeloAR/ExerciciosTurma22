@@ -79,3 +79,9 @@ body {
     margin-left: 50px;
 }
 
+#contatoFooter{
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
+
