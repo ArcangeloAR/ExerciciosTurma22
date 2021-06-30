@@ -1,6 +1,7 @@
 package org.generation.blogPessoal.service;
 
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.codec.binary.Base64;
@@ -8,6 +9,7 @@ import org.generation.blogPessoal.model.UserLogin;
 import org.generation.blogPessoal.model.Usuario;
 import org.generation.blogPessoal.model.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,9 @@ public class UsuarioService {
 				String authHeader = "Basic " + new String(encodeAuth);
 				user.get().setToken(authHeader);
 				user.get().setNome(usuario.get().getNome());
+				user.get().setId(usuario.get().getIdUsuario());
+				user.get().setFoto(usuario.get().getFoto());
+				user.get().setTipo(usuario.get().getTipo());
 				
 				return user;
 			}
@@ -42,4 +47,13 @@ public class UsuarioService {
 		return null;
 	}
 	
+	public ResponseEntity<List<Usuario>> findAll() {
+		List<Usuario> listaDeUsuarios = usuarioRepository.findAll();
+		
+		if (listaDeUsuarios.isEmpty()) {
+			return ResponseEntity.status(204).build();
+		} else {
+			return ResponseEntity.status(200).body(listaDeUsuarios);
+		}
+	}
 }
