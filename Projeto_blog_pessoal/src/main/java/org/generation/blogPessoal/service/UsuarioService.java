@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.apache.commons.codec.binary.Base64;
 import org.generation.blogPessoal.model.UserLogin;
 import org.generation.blogPessoal.model.Usuario;
-import org.generation.blogPessoal.model.repository.UsuarioRepository;
+import org.generation.blogPessoal.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,45 +15,63 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
-	
-	private @Autowired UsuarioRepository usuarioRepository;
-	
-	public Usuario cadastrarUsuario(Usuario usuario) {
+
+	@Autowired
+	private UsuarioRepository repository;
+
+	public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
+		
+		
+		if(repository.findByUsuario(usuario.getUsuario()).isPresent())
+			return null;
+		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
 		String senhaEncoder = encoder.encode(usuario.getSenha());
 		usuario.setSenha(senhaEncoder);
-		
-		return usuarioRepository.save(usuario);
+
+		return Optional.of(repository.save(usuario));
 	}
-	
+
 	public Optional<UserLogin> logar(Optional<UserLogin> user) {
+
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Optional<Usuario> usuario = usuarioRepository.findByUsuario(user.get().getUsuario());
-		
+		Optional<Usuario> usuario = repository.findByUsuario(user.get().getUsuario());
+
 		if(usuario.isPresent()) {
 			if(encoder.matches(user.get().getSenha(), usuario.get().getSenha())) {
+
 				String auth = user.get().getUsuario() + ":" + user.get().getSenha();
-				byte[] encodeAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
-				String authHeader = "Basic " + new String(encodeAuth);
+				byte[] encodedAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
+				String authHeader = "Basic " + new String(encodedAuth);
+
 				user.get().setToken(authHeader);
 				user.get().setNome(usuario.get().getNome());
-				user.get().setId(usuario.get().getIdUsuario());
+				user.get().setId(usuario.get().getId());
 				user.get().setFoto(usuario.get().getFoto());
 				user.get().setTipo(usuario.get().getTipo());
+
 				
 				return user;
+
 			}
 		}
 		return null;
 	}
 	
 	public ResponseEntity<List<Usuario>> findAll() {
-		List<Usuario> listaDeUsuarios = usuarioRepository.findAll();
+		List<Usuario> listaDeUsuarios = repository.findAll();
 		
-		if (listaDeUsuarios.isEmpty()) {
+		if(listaDeUsuarios.isEmpty()) {
 			return ResponseEntity.status(204).build();
 		} else {
 			return ResponseEntity.status(200).body(listaDeUsuarios);
 		}
+	}
+	
+	public ResponseEntity<Usuario> getByIdUsuario(long id) {
+		return repository.findById(id)
+				.map(resp -> ResponseEntity.status(200).body(resp))
+				.orElse(ResponseEntity.status(204).build());
 	}
 }

@@ -10,44 +10,44 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 @Entity
-@Table(name = "postagens")
+@Table (name = "tb_postagem")
 public class Postagem {
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idPostagem;
-
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	private long id;
+	
 	@NotNull
 	@Size(min = 5, max = 100)
 	private String titulo;
-
+	
 	@NotNull
 	@Size(min = 10, max = 500)
 	private String texto;
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date = new java.sql.Date(System.currentTimeMillis());
 	
 	@ManyToOne
-	@JsonIgnoreProperties("postagem")
+	@JsonIgnoreProperties ("postagem")
 	private Tema tema;
 	
 	@ManyToOne
-	@JsonIgnoreProperties("postagem")
+	@JsonIgnoreProperties ("postagem")
 	private Usuario usuario;
 
-	public long getIdPostagem() {
-		return idPostagem;
+	public long getId() {
+		return id;
 	}
 
-	public void setIdPostagem(Long idPostagem) {
-		this.idPostagem = idPostagem;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getTitulo() {
@@ -65,7 +65,7 @@ public class Postagem {
 	public void setTexto(String texto) {
 		this.texto = texto;
 	}
-
+	
 	public Date getDate() {
 		return date;
 	}
@@ -89,5 +89,5 @@ public class Postagem {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 }

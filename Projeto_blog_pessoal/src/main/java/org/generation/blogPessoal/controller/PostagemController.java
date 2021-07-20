@@ -2,6 +2,8 @@ package org.generation.blogPessoal.controller;
 
 import java.util.List;
 
+import org.generation.blogPessoal.model.Postagem;
+import org.generation.blogPessoal.service.PostagemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,11 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.generation.blogPessoal.model.Postagem;
-import org.generation.blogPessoal.service.PostagemService;
 
 @RestController
 @RequestMapping("/postagens")
@@ -26,34 +25,34 @@ public class PostagemController {
 	@Autowired
 	private PostagemService postagemService;
 	
+	
 	@GetMapping
 	public ResponseEntity<List<Postagem>> getAll(){
 		return postagemService.findAll();
 	}
 	
-	@GetMapping("/id/{id}")
-	public ResponseEntity<Postagem> GetById(@PathVariable Long idPostagem){
-		return postagemService.procurarPostagemPorId(idPostagem);
+	@GetMapping("/{id}")
+	public ResponseEntity <Postagem> GetById (@PathVariable(value = "id") long id) {
+		return postagemService.findByIdPostagem(id);
 	}
 	
-	@GetMapping("/titulo")
-	public ResponseEntity<List<Postagem>> getByTitulos(@RequestParam String titulo) {
-		return postagemService.procurarPostagemPorTitulo(titulo);
+	@GetMapping("/titulo/{titulo}")
+	public ResponseEntity<List<Postagem>> GetByTitulo(@PathVariable(value = "titulo") String titulo) {
+		return postagemService.findByTituloPostagem(titulo);
 	}
 	
-	@PostMapping("/{id_usuario}")
-	public ResponseEntity<Postagem> efetuarPostagem(@PathVariable(value = "id_usuario") Long idUsuario, @RequestBody String descricaoTema, @RequestBody Postagem novaPostagem) {
-		return postagemService.efetuarPostagem(idUsuario, descricaoTema, novaPostagem);
+	@PostMapping
+	public ResponseEntity<Postagem> post(@RequestBody Postagem postagem){
+		return postagemService.efetuarPostagem(postagem);
 	}
 	
-	@PutMapping("/{id_usuario}/{id_postagem}")
-	public ResponseEntity<Postagem> alterarPostagem(@PathVariable(value = "id_usuario") Long idUsuario, @PathVariable(value = "id_postagem") Long idPostagem, @RequestBody String descricaoTema, @RequestBody Postagem novaPostagem){
-		return postagemService.modificarPostagem(idUsuario, idPostagem, descricaoTema, novaPostagem);
+	@PutMapping
+	public ResponseEntity<Postagem> put(@RequestBody Postagem postagem){
+		return postagemService.modificarPostagem(postagem);
 	}
 	
-	@DeleteMapping("/{id_postagem}")
-	public ResponseEntity<String> deletar(@PathVariable(value = "id_postagem") Long idPostagem) {
-		return postagemService.deletarPostagem(idPostagem);
-	}
-	
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable(value = "id") long id) {
+		postagemService.deletarPostagem(id);
+	}	
 }
